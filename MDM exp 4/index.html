@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>experiment 4</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #tb1 {
+            height: 80px;
+            width: 296px;
+            text-align: center;
+            font-size: large;
+            shape-rendering: crispEdges;
+            margin-bottom: 0.5%;
+            background-color: rgb(255, 217, 0);
+        }
+
+        #tb2,
+        #toggle,
+        #Animate {
+            height: 50px;
+            width: 150px;
+            text-align: center;
+            font-size: medium;
+            shape-rendering: crispEdges;
+            margin-bottom: 0.5%;
+            background-color: cornflowerblue;
+        }
+
+        #hide,
+        #show {
+            height: 50px;
+            width: 73px;
+            text-align: center;
+            font-size: medium;
+            shape-rendering: crispEdges;
+            margin-bottom: 0.5%;
+            background-color: cornflowerblue;
+        }
+    </style>
+    <script>
+        function update_text() {
+            document.getElementById("tb1").value = "text updated successfully"
+        }
+        $(document).ready(function () {
+            $("#hide").click(function () {
+                $("#tb1").hide(100);
+            })
+            $("#show").click(function () {
+                $("#tb1").show(100);
+            })
+            $("#toggle").click(function () {
+                $("#tb1").toggle(300);
+            })
+            $("#Animate").click(function () {
+                $("#tb1").animate({
+                    height: '200px',
+                    width: '500px',
+                    fontSize: '30px'
+                }, 1000).animate({
+                    height: '80px',
+                    width: '300px',
+                    fontSize: '18px'
+                }, 1000);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <h1>Implement jQuery effects</h1>
+    <div class="textbox" id="text">
+        <input type="text" id="tb1" name="t1" placeholder="enter your text">
+        <div>
+            <input type="button" id="tb2" name="t2" value="Update" onclick="update_text()">
+            <input type="button" id="hide" name="t3" value="Hide">
+            <input type="button" id="show" name="t4" value="Show">
+            <br>
+            <input type="button" id="toggle" name="t5" value="Toggle">
+            <input type="button" id="Animate" name="t6" value="Animate">
+        </div>
+    </div>
+</body>
+
+</html>

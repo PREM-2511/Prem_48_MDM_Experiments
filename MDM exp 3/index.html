@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do list</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>To-Do List</h2><br>
+    <form name="frm">
+        <input type="text" name="T1" placeholder="Enter your task" required>
+        <input type="button" value="Submit" onclick="l1()">
+        <input type="button" value="Show" onclick="display()">
+    </form>
+    <h2>Your Tasks:</h2>
+    <ul id="displayArea"></ul>
+    <script>
+        const list = [];
+        function l1() {
+            const input = document.frm.T1;
+            const task = input.value.trim();
+            if (task === '') {
+                alert("Task should be entered.");
+                return;
+            }
+            list.push({ text: task, completed: false });
+            input.value = '';
+            input.focus();
+        }
+        function display() {
+            const displayArea = document.getElementById("displayArea");
+            displayArea.innerHTML = "";
+            list.forEach((item, index) => {
+                const li = document.createElement("li");
+                // Task text
+                const span = document.createElement("span");
+                span.textContent = item.text;
+                if (item.completed) {
+                    span.classList.add("completed");
+                }
+                // Complete button
+                const completeBtn = document.createElement("button");
+                completeBtn.textContent = "Complete";
+                completeBtn.onclick = function () {
+                    markComplete(index);
+                };
+                // Delete button
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Delete";
+                deleteBtn.onclick = function () {
+                    deleteTask(index);
+                };
+                li.appendChild(span);
+                li.appendChild(document.createTextNode(" "));
+                li.appendChild(completeBtn);
+                li.appendChild(document.createTextNode(" "));
+                li.appendChild(deleteBtn);
+                displayArea.appendChild(li);
+            });
+        }
+        function markComplete(index) {
+            list[index].completed = !list[index].completed;
+            display();
+        }
+        function deleteTask(index) {
+            list.splice(index, 1);
+            display();
+        }
+    </script>
+</body>
+
+</html>

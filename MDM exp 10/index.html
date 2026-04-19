@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Search Filter</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 align="center">Search API Data</h2>
+    <center>
+        <input type="text" id="search" placeholder="Search by title...">
+    </center>
+    <div id="results"></div>
+    <script>
+        let apiData = [];
+        fetch("https://dummyjson.com/posts")
+            .then(response => response.json())
+            .then(data => {
+                apiData = data.posts;
+                displayData(apiData);
+            });
+        function displayData(data) {
+            const resultDiv = document.getElementById("results");
+            resultDiv.innerHTML = "";
+            data.forEach(item => {
+                resultDiv.innerHTML += `
+<div class="card">
+<h4>${item.title}</h4>
+<p>${item.body}</p>
+</div>
+`;
+            });
+        }
+        document.getElementById("search").addEventListener("keyup", function () {
+            const keyword = this.value.toLowerCase();
+            const filteredData = apiData.filter(item =>
+                item.title.toLowerCase().includes(keyword)
+            );
+            displayData(filteredData);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+:root {
+    --neon-green: #ccff00;
+    --dark-steel: #12141d;
+    --soft-gray: #1f222c;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--dark-steel);
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+.navbar-brand {
+    font-family: 'Syncopate', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Custom Navigation */
+.navbar {
+    background: rgba(18, 20, 29, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(204, 255, 0, 0.2);
+}
+
+/* Split Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, var(--dark-steel) 50%, #1a1d26 50%);
+    padding-top: 80px;
+}
+
+.hero-img {
+    max-width: 120%;
+    filter: drop-shadow(0 0 30px rgba(204, 255, 0, 0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Dynamic Cards */
+.feature-box {
+    background: var(--soft-gray);
+    border-left: 4px solid var(--neon-green);
+    padding: 40px;
+    border-radius: 0 20px 20px 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-box:hover {
+    background: var(--neon-green);
+    color: var(--dark-steel);
+    transform: scale(1.05);
+}
+
+/* Pricing Cards */
+.price-card {
+    background: #1a1d26;
+    border: 1px solid #333;
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.price-card.active {
+    border-color: var(--neon-green) !important;
+    box-shadow: 0 0 30px rgba(204, 255, 0, 0.2);
+    transform: translateY(-10px);
+}
+
+.price-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(204, 255, 0, 0.05) 0%, transparent 70%);
+}
+
+/* Buttons */
+.btn-velocity {
+    background: var(--neon-green);
+    color: var(--dark-steel);
+    font-weight: 700;
+    padding: 15px 40px;
+    border-radius: 0;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    transition: 0.3s;
+    border: none;
+}
+
+.btn-velocity:hover {
+    background: #ffffff;
+    transform: skew(-5deg);
+}
+
+/* Contact Input */
+.v-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #333;
+    border-radius: 0;
+    color: white;
+    padding: 15px 0;
+}
+
+.v-input:focus {
+    background: transparent;
+    box-shadow: none;
+    border-color: var(--neon-green);
+    color: white;
+}
+
+.v-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    opacity: 1;
+}
+
+/* Ensure the active card always has the neon border and glow */
+.price-card.active {
+    border-color: var(--neon-green) !important;
+    box-shadow: 0 0 30px rgba(204, 255, 0, 0.2);
+    transform: translateY(-10px);
+}
+
+/* Keep the non-active card slightly muted */
+.price-card:not(.active) {
+    opacity: 0.7;
+}
+
+.price-card:not(.active):hover {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.5);
+}
